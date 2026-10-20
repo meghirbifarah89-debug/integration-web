@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Activité 7</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class App extends React.Component {
+            // Initialisation du state SANS constructeur
+            state = {
+                msg: "Veuillez vous inscrire",
+                ins: "Inscription"
+            };
+
+            styles = { 
+                fontStyle: "bold", 
+                color: "teal" 
+            };
+
+            // Fonction fléchée pour gérer le clic
+            Changement = () => {
+                this.setState({
+                    msg: "Suivez les màj",
+                    ins: "Déjà inscrit"
+                });
+            };
+
+            render() {
+                return (
+                    <div>
+                        <h1 style={this.styles}>{this.state.msg}</h1>
+                        <button onClick={this.Changement}>{this.state.ins}</button>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
