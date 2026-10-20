@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Activité 8</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class App extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    msg: "Veuillez vous inscrire",
+                    ins: "Inscription",
+                    // On stocke l'état de la souris (survol ou non)
+                    survol: false 
+                };
+            }
+
+            styles = { 
+                fontStyle: "bold", 
+                color: "teal" 
+            };
+
+            // Quand la souris entre sur la cloche
+            entrerSouris = () => {
+                this.setState({ survol: true });
+            };
+
+            // Quand la souris quitte la cloche
+            sortirSouris = () => {
+                this.setState({ survol: false });
+            };
+
+            Changement = () => {
+                this.setState({
+                    msg: "Suivez les màj",
+                    ins: "Déjà inscrit"
+                });
+            };
+
+            render() {
+                return (
+                    <div>
+                        <h1 style={this.styles}>{this.state.msg}</h1>
+                        
+                        {/* Bouton de l'activité 7 */}
+                        <button onClick={this.Changement} style={{ marginBottom: '20px' }}>
+                            {this.state.ins}
+                        </button>
+                        
+                        <br />
+                        
+                        {/* La zone avec les cloches de l'activité 8 */}
+                        <div style={{ fontSize: '50px', cursor: 'pointer' }}>
+                            {/* 
+                                On affiche une cloche différente selon l'état 'survol'.
+                                Si survol = vrai, on affiche la cloche qui sonne. 
+                            */}
+                            <span 
+                                onMouseEnter={this.entrerSouris} 
+                                onMouseLeave={this.sortirSouris}
+                            >
+                                {this.state.survol ? "🔔" : "🛎️"}
+                            </span>
+                        </div>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
